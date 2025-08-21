@@ -9,8 +9,8 @@ Følgende informationer skal samles
 4. Database navn i MapConnect skal bestemmes.
 
 Filen create_tv_tables.sql skal kopiers og de fire informationer listet ovenfor skal erstattes  de søge strenge, der er angivet i toppen af filen.
-Det omfatter:
-  <token> erstattes med guid fra cloudConnect projektet.
+#Det omfatter:
+ ## <token> erstattes med guid fra cloudConnect projektet.
   
 create_tv_tables.sql består af 13 seperate step.
 Hvert step skal afvikles fra pgAdmin og man skal være sikker på det enkelte step er fuldført før man går videre til den næste.
