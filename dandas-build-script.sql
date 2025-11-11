@@ -1,5 +1,5 @@
 -- FUNCTION: dandas.build()
-
+-- replace <token> og <apikey>
 -- DROP FUNCTION IF EXISTS dandas.build();
 
 CREATE OR REPLACE FUNCTION dandas.build(
@@ -424,4 +424,5 @@ GRANT EXECUTE ON FUNCTION dandas.build() TO PUBLIC;
 GRANT EXECUTE ON FUNCTION dandas.build() TO br_admin;
 
 GRANT EXECUTE ON FUNCTION dandas.build() TO gc2;
+
 
