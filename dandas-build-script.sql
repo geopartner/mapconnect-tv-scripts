@@ -179,7 +179,7 @@ CREATE OR REPLACE VIEW dandas.ledninger_og_stik_med_tv_eksisterende
     concat('https://cloudconnectapi.geopartner.dk/prod/service/file/', mv_cc_files.filnavn, '?token=<token>&apikey=<apikey>') AS filmfil,
     ( SELECT array_to_string(array_agg(DISTINCT subq.billede), '<p>'::text) AS array_to_string
            FROM ( SELECT 1 AS group_arg,
-                    (((((('<a target="_blank" href="https://cloudconnectapi.geopartner.dk/prod/service/file/'::text || ftp_files_1.filnavn) || '?token=<token>&apikey=<apikey>'::text) || '">'::text) || '<img width="250px" src="https://cloudconnectapi.geopartner.dk/prod/service/file/'::text) || ftp_files_1.filnavn) || '?token=<token>'::text) || '"/></a>'::text AS billede
+                    (((((('<a target="_blank" href="https://cloudconnectapi.geopartner.dk/prod/service/file/'::text || ftp_files_1.filnavn) || '?token=<token>&apikey=<apikey>'::text) || '">'::text) || '<img width="250px" src="https://cloudconnectapi.geopartner.dk/prod/service/file/'::text) || ftp_files_1.filnavn) || '?token=<token>&apikey=<apikey'::text) || '"/></a>'::text AS billede
                    FROM dandas.mv_cc_files ftp_files_1
                   WHERE ftp_files_1.filnavn ~~* concat(ddg_ledning."til_brønd", '-', ddg_ledning."fra_brønd", '-', '%.jpg')) subq
           GROUP BY subq.group_arg) AS billeder,
@@ -424,5 +424,6 @@ GRANT EXECUTE ON FUNCTION dandas.build() TO PUBLIC;
 GRANT EXECUTE ON FUNCTION dandas.build() TO br_admin;
 
 GRANT EXECUTE ON FUNCTION dandas.build() TO gc2;
+
 
 
