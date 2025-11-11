@@ -1,5 +1,6 @@
 -- FUNCTION: dandas.build()
 -- replace <token> og <apikey>
+-- replace <admin>
 -- DROP FUNCTION IF EXISTS dandas.build();
 
 CREATE OR REPLACE FUNCTION dandas.build(
@@ -209,7 +210,7 @@ CREATE OR REPLACE VIEW dandas.tv_ledninger_og_stik_fejl
      LEFT JOIN dandas.mv_cc_files cc ON "substring"(cc.filnavn, '^[^.]+'::text) = "substring"(ddg_ledning.filmfil::text, '^[^.]+'::text)
   WHERE ddg_ledning.filmfil IS NOT NULL AND cc.filnavn IS NULL;
 
-ALTER TABLE dandas.tv_ledninger_og_stik_fejl    OWNER TO br_admin;
+
 
 -- View: dandas.ledninger_og_stik_med_tv_ikke_eksisterende
 CREATE OR REPLACE VIEW dandas.ledninger_og_stik_med_tv_ikke_eksisterende
@@ -411,7 +412,7 @@ CREATE OR REPLACE VIEW dandas.tv_observationer_kommentar
    FROM dandas.gp_tv_observationer
   WHERE gp_tv_observationer.tvobskode IS NULL AND gp_tv_observationer.tvbemaerk IS NOT NULL;
 
-  GRANT SELECT ON ALL TABLES IN SCHEMA dandas TO br_projekt;
+ 
 
 END;
 $BODY$;
@@ -421,9 +422,10 @@ ALTER FUNCTION dandas.build()
 
 GRANT EXECUTE ON FUNCTION dandas.build() TO PUBLIC;
 
-GRANT EXECUTE ON FUNCTION dandas.build() TO br_admin;
+GRANT EXECUTE ON FUNCTION dandas.build() TO <admin>;
 
 GRANT EXECUTE ON FUNCTION dandas.build() TO gc2;
+
 
 
 
