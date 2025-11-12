@@ -55,11 +55,11 @@ GRANT ALL ON TABLE dandas.<vw_cc_projecname> TO <databasenavn>;
 
 
 --6
--- View: dandas.<mv_files_projecname>
+-- View: dandas.mv_cc_projectfiles
 
--- DROP MATERIALIZED VIEW IF EXISTS dandas.<mv_files_projecname>;
+-- DROP MATERIALIZED VIEW IF EXISTS dandas.mv_cc_projectfiles
 
-CREATE MATERIALIZED VIEW IF NOT EXISTS dandas.<mv_files_projecname>
+CREATE MATERIALIZED VIEW IF NOT EXISTS dandas.mv_cc_projectfiles
 TABLESPACE pg_default
 AS
  SELECT <vw_cc_projecname>.pk AS gid,
@@ -71,17 +71,17 @@ AS
    FROM dandas.<vw_cc_projecname> 
 WITH DATA;
 
-ALTER TABLE IF EXISTS dandas.<mv_files_projecname>
+ALTER TABLE IF EXISTS dandas.mv_cc_projectfiles
     OWNER TO gc2;
 
-GRANT ALL ON TABLE dandas.<mv_files_projecname> TO gc2;
-GRANT ALL ON TABLE dandas.<mv_files_projecname> TO <databasenavn>;
+GRANT ALL ON TABLE dandas.mv_cc_projectfiles> TO gc2;
+GRANT ALL ON TABLE dandas.mv_cc_projectfiles TO <databasenavn>;
 
-CREATE INDEX idx_mv<databasenavn>_file_sti
-    ON dandas.<mv_files_projecname> USING btree
+CREATE INDEX idx_cc_projectfiles_file_sti
+    ON dandas.mv_cc_projectfiles USING btree
     (sti COLLATE pg_catalog."default")
     TABLESPACE pg_default;
-CREATE INDEX idx_<mv_files_projecname>_filnavn
+CREATE INDEX idx_projecname_filnavn
     ON dandas.<mv_files_projecname> USING btree
     (filnavn COLLATE pg_catalog."default")
     TABLESPACE pg_default;
