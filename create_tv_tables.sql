@@ -62,27 +62,27 @@ GRANT ALL ON TABLE dandas.<vw_cc_projecname> TO <databasenavn>;
 CREATE MATERIALIZED VIEW IF NOT EXISTS dandas.mv_cc_projectfiles
 TABLESPACE pg_default
 AS
- SELECT <vw_cc_projecname>.pk AS gid,
-    <vw_cc_projecname>.filename AS filnavn,
-    <vw_cc_projecname>.filetype,
-    <vw_cc_projecname>.folder,
-    <vw_cc_projecname>.foldername AS sti,
+ SELECT vw_cc_projectfiles.pk AS gid,
+    vw_cc_projectfiles.filename AS filnavn,
+    vw_cc_projectfiles.filetype,
+    vw_cc_projectfiles.folder,
+    vw_cc_projectfiles.foldername AS sti,
     true AS file_exists_on_ftp
-   FROM dandas.<vw_cc_projecname> 
+   FROM dandas.vw_cc_projectfiles 
 WITH DATA;
 
 ALTER TABLE IF EXISTS dandas.mv_cc_projectfiles
     OWNER TO gc2;
 
-GRANT ALL ON TABLE dandas.mv_cc_projectfiles> TO gc2;
-GRANT ALL ON TABLE dandas.mv_cc_projectfiles TO <databasenavn>;
+GRANT ALL ON TABLE dandas.mv_cc_projectfiles TO gc2;
+
 
 CREATE INDEX idx_cc_projectfiles_file_sti
     ON dandas.mv_cc_projectfiles USING btree
     (sti COLLATE pg_catalog."default")
     TABLESPACE pg_default;
-CREATE INDEX idx_projecname_filnavn
-    ON dandas.<mv_files_projecname> USING btree
+CREATE INDEX iidx_cc_projectfiles_filnavn
+    ON dandas.mv_cc_projectfiles USING btree
     (filnavn COLLATE pg_catalog."default")
     TABLESPACE pg_default;
 
